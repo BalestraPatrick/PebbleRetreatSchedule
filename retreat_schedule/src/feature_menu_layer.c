@@ -1,3 +1,4 @@
+
 #include "pebble.h"
 
 static Window *window;
@@ -5,19 +6,23 @@ static MenuLayer *menu_layer;
 
 static char *thursday_events[7];
 static char *thursday_times[7];
+static int thursday_hours[7] = {8, 10, 12, 13, 18, 19, 22};
 
 static char *friday_events[8];
 static char *friday_times[8];
+static int friday_hours[8] = {9, 10, 10, 12, 13, 18, 19, 22};
 
 static char *saturday_events[8];
 static char *saturday_times[8];
+static int saturday_hours[8] = {9, 10, 10, 12, 13, 18, 20, 22};
 
 static char *sunday_events[6];
 static char *sunday_times[6];
+static int sunday_hours[6] = {9, 10, 11, 12, 14, 15};
 
 static void create_data () {
     // Thursday
-    thursday_events[0] = "Registration / Breakfast / Swag";
+    thursday_events[0] = "Registration/Breakfast/Swag";
     thursday_events[1] = "Introduction and overview of talks";
     thursday_events[2] = "Lunch!";
     thursday_events[3] = "Advanced Techniques, Tools, and APIs";
@@ -34,12 +39,12 @@ static void create_data () {
     thursday_times[6] = "22:00";
 
     // Friday
-    friday_events[0] = "Welcome / Breakfast";
+    friday_events[0] = "Welcome/Breakfast";
     friday_events[1] = "Let the hacking commence all afternoon!";
     friday_events[2] = "Optional battery workshop";
     friday_events[3] = "Lunch!";
     friday_events[4] = "Optional individual code reviews and mystery workshop";
-    friday_events[5] = "Private tours / exploration of the Computer History Museum (CHM) in Mountain View";
+    friday_events[5] = "Private tours/exploration of the Computer History Museum (CHM) in Mountain View";
     friday_events[6] = "Dinner at the CHM next to the Babbage Engine!";
     friday_events[7] = "Leave CHM -> Mountain View to sleep or explore";
     
@@ -57,7 +62,7 @@ static void create_data () {
     saturday_events[1] = "Let the hacking commence all afternoon!";
     saturday_events[2] = "Optional robotics competition!";
     saturday_events[3] = "Lunch!";
-    saturday_events[4] = "Optional app demos / design reviews/code reviews";
+    saturday_events[4] = "Optional app demos/design reviews/code reviews";
     saturday_events[5] = "Dinner!";
     saturday_events[6] = "Custom ice cream sandwich making bar provided by Cream!";
     saturday_events[7] = "Leave retreat and go sleep or explore";
@@ -102,6 +107,10 @@ static uint16_t menu_get_num_rows_callback(MenuLayer *menu_layer, uint16_t secti
     } else {
         return 6;
     }
+}
+
+static int16_t menu_layer_get_cell_height_callback(struct MenuLayer *menu_layer, MenuIndex *cell_index, void *callback_context) {
+    return 44;
 }
 
 static int16_t menu_get_header_height_callback(MenuLayer *menu_layer, uint16_t section_index, void *data) {
@@ -158,6 +167,7 @@ void window_load(Window *window) {
         .get_header_height = menu_get_header_height_callback,
         .draw_header = menu_draw_header_callback,
         .draw_row = menu_draw_row_callback,
+        .get_cell_height = menu_layer_get_cell_height_callback,
     });
 
     menu_layer_set_click_config_onto_window(menu_layer, window);
@@ -169,15 +179,42 @@ void window_load(Window *window) {
     
     int hour = tick_time->tm_hour;
     int day = tick_time->tm_mday;
-    if (hour > 12) {
-        hour = hour - 12;
-    }
     
-    if (day == 1 || day == 2 || day == 3 || day == 4) {
+    if (day == 17 || day == 2 || day == 3 || day == 4) {
         MenuIndex selected;
-        selected.section = day - 1;
-        selected.row = 0;
-        menu_layer_set_selected_index(menu_layer, selected, MenuRowAlignTop, false);
+        selected.section = /*day - */2;
+
+        if (day == 17) {
+            for (int i = 0; i < 7; i++) {
+                int event_hour = thursday_hours[i];
+                if (event_hour <= hour) {
+                    selected.row = i;
+                }
+            }
+        } else if (day == 2) {
+            for (int i = 0; i < 8; i++) {
+                int event_hour = friday_hours[i];
+                if (event_hour <= hour) {
+                    selected.row = i;
+                }
+            }
+        } else if (day == 3) {
+            for (int i = 0; i < 8; i++) {
+                int event_hour = saturday_hours[i];
+                if (event_hour <= hour) {
+                    selected.row = i;
+                }
+            }
+        } else if (day == 4) {
+            for (int i = 0; i < 8; i++) {
+                int event_hour = sunday_hours[i];
+                if (event_hour <= hour) {
+                    selected.row = i;
+                }
+            }
+        }
+        
+        menu_layer_set_selected_index(menu_layer, selected, MenuRowAlignCenter, false);
     }
 }
 
