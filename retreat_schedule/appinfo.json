@@ -1,0 +1,21 @@
+{
+    "appKeys": {},
+    "capabilities": [
+        ""
+    ],
+    "companyName": "infobalestra@gmail.com",
+    "longName": "Retreat Schedule",
+    "projectType": "native",
+    "resources": {
+        "media": [
+            
+        ]
+    },
+    "shortName": "Retreat Schedule",
+    "uuid": "4ab3a5b9-08c9-4bba-8b8b-9271c3fb6259",
+    "versionCode": 1,
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": false
+    }
+}
