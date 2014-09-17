@@ -6,7 +6,7 @@ static MenuLayer *menu_layer;
 
 static char *thursday_events[7];
 static char *thursday_times[7];
-static int thursday_hours[7] = {8, 10, 12, 13, 18, 19, 22};
+static int thursday_hours[7] = {9, 10, 12, 13, 18, 19, 22};
 
 static char *friday_events[8];
 static char *friday_times[8];
@@ -94,15 +94,17 @@ static void create_data () {
 }
 
 static uint16_t menu_get_num_sections_callback(MenuLayer *menu_layer, void *data) {
-    return 4;
+    return 5;
 }
 
 static uint16_t menu_get_num_rows_callback(MenuLayer *menu_layer, uint16_t section_index, void *data) {
     if (section_index == 0) {
-        return 7;
+        return 1;
     } else if (section_index == 1) {
-        return 8;
+        return 7;
     } else if (section_index == 2) {
+        return 8;
+    } else if (section_index == 3) {
         return 8;
     } else {
         return 6;
@@ -110,7 +112,11 @@ static uint16_t menu_get_num_rows_callback(MenuLayer *menu_layer, uint16_t secti
 }
 
 static int16_t menu_layer_get_cell_height_callback(struct MenuLayer *menu_layer, MenuIndex *cell_index, void *callback_context) {
-    return 44;
+    if (cell_index->section == 0) {
+        return 98;
+    } else {
+        return 44;
+    }
 }
 
 static int16_t menu_get_header_height_callback(MenuLayer *menu_layer, uint16_t section_index, void *data) {
@@ -119,12 +125,14 @@ static int16_t menu_get_header_height_callback(MenuLayer *menu_layer, uint16_t s
 
 static void menu_draw_header_callback(GContext* ctx, const Layer *cell_layer, uint16_t section_index, void *data) {
     if (section_index == 0) {
-        menu_cell_basic_header_draw(ctx, cell_layer, "Thursday 2");
+        menu_cell_basic_header_draw(ctx, cell_layer, "Location/Contact");
     } else if (section_index == 1) {
-        menu_cell_basic_header_draw(ctx, cell_layer, "Friday 3");
+        menu_cell_basic_header_draw(ctx, cell_layer, "Thursday 2");
     } else if (section_index == 2) {
-        menu_cell_basic_header_draw(ctx, cell_layer, "Saturday 4");
+        menu_cell_basic_header_draw(ctx, cell_layer, "Friday 3");
     } else if (section_index == 3) {
+        menu_cell_basic_header_draw(ctx, cell_layer, "Saturday 4");
+    } else if (section_index == 4) {
         menu_cell_basic_header_draw(ctx, cell_layer, "Sunday 5");
     }
 }
@@ -134,18 +142,22 @@ static void menu_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuI
     graphics_context_set_text_color(ctx, GColorBlack);
   
     if (cell_index->section == 0) {
+        graphics_draw_text(ctx, "Y Combinator", fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD), GRect(5, -4, 139, 98), GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft, NULL);
+        graphics_draw_text(ctx, "320 Pioneer Way\nMountain View\nCA 94041", fonts_get_system_font(FONT_KEY_GOTHIC_18), GRect(5, 20, 139, 78), GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft, NULL);
+        graphics_draw_text(ctx, "events@getpebble.com", fonts_get_system_font(FONT_KEY_GOTHIC_14), GRect(5, 76, 139, 22), GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft, NULL);
+    } else if (cell_index->section == 1) {
         float text_height = graphics_text_layout_get_content_size(thursday_events[cell_index->row], fonts_get_system_font(FONT_KEY_GOTHIC_14), GRect(3, 0, 100, 44), GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft).h;
         graphics_draw_text(ctx, thursday_events[cell_index->row], fonts_get_system_font(FONT_KEY_GOTHIC_14), GRect(3, (44 / 2) - (text_height / 2) - 3, 100, text_height), GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft, NULL);
         graphics_draw_text(ctx, thursday_times[cell_index->row], fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD), GRect(100, 10, 41, 20), GTextOverflowModeTrailingEllipsis, GTextAlignmentRight, NULL);
-    } else if (cell_index->section == 1) {
+    } else if (cell_index->section == 2) {
         float text_height = graphics_text_layout_get_content_size(friday_events[cell_index->row], fonts_get_system_font(FONT_KEY_GOTHIC_14), GRect(3, 0, 100, 44), GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft).h;
         graphics_draw_text(ctx, friday_events[cell_index->row], fonts_get_system_font(FONT_KEY_GOTHIC_14), GRect(3, (44 / 2) - (text_height / 2) - 3, 100, text_height), GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft, NULL);
         graphics_draw_text(ctx, friday_times[cell_index->row], fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD), GRect(100, 10, 41, 20), GTextOverflowModeTrailingEllipsis, GTextAlignmentRight, NULL);
-    } else if (cell_index->section == 2) {
+    } else if (cell_index->section == 3) {
         float text_height = graphics_text_layout_get_content_size(saturday_events[cell_index->row], fonts_get_system_font(FONT_KEY_GOTHIC_14), GRect(3, 0, 100, 44), GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft).h;
         graphics_draw_text(ctx, saturday_events[cell_index->row], fonts_get_system_font(FONT_KEY_GOTHIC_14), GRect(3, (44 / 2) - (text_height / 2) - 3, 100, text_height), GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft, NULL);
         graphics_draw_text(ctx, saturday_times[cell_index->row], fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD), GRect(100, 10, 41, 20), GTextOverflowModeTrailingEllipsis, GTextAlignmentRight, NULL);
-    } else if (cell_index->section == 3) {
+    } else if (cell_index->section == 4) {
         float text_height = graphics_text_layout_get_content_size(sunday_events[cell_index->row], fonts_get_system_font(FONT_KEY_GOTHIC_14), GRect(3, 0, 100, 44), GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft).h;
         graphics_draw_text(ctx, sunday_events[cell_index->row], fonts_get_system_font(FONT_KEY_GOTHIC_14), GRect(3, (44 / 2) - (text_height / 2) - 3, 100, text_height), GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft, NULL);
         graphics_draw_text(ctx, sunday_times[cell_index->row], fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD), GRect(100, 10, 41, 20), GTextOverflowModeTrailingEllipsis, GTextAlignmentRight, NULL);
@@ -182,31 +194,31 @@ void window_load(Window *window) {
     
     if (day == 2 || day == 3 || day == 4 || day == 5) {
         MenuIndex selected;
-        selected.section = 2;
+        selected.section = day - 1;
 
-        if (day == 1) {
+        if (day == 2) {
             for (int i = 0; i < 7; i++) {
                 int event_hour = thursday_hours[i];
                 if (event_hour <= hour) {
                     selected.row = i;
                 }
             }
-        } else if (day == 2) {
+        } else if (day == 3) {
             for (int i = 0; i < 8; i++) {
                 int event_hour = friday_hours[i];
                 if (event_hour <= hour) {
                     selected.row = i;
                 }
             }
-        } else if (day == 3) {
+        } else if (day == 4) {
             for (int i = 0; i < 8; i++) {
                 int event_hour = saturday_hours[i];
                 if (event_hour <= hour) {
                     selected.row = i;
                 }
             }
-        } else if (day == 4) {
-            for (int i = 0; i < 8; i++) {
+        } else if (day == 5) {
+            for (int i = 0; i < 6; i++) {
                 int event_hour = sunday_hours[i];
                 if (event_hour <= hour) {
                     selected.row = i;
