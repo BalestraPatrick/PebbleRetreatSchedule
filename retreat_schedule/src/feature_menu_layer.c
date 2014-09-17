@@ -180,11 +180,11 @@ void window_load(Window *window) {
     int hour = tick_time->tm_hour;
     int day = tick_time->tm_mday;
     
-    if (day == 17 || day == 2 || day == 3 || day == 4) {
+    if (day == 2 || day == 3 || day == 4 || day == 5) {
         MenuIndex selected;
-        selected.section = /*day - */2;
+        selected.section = 2;
 
-        if (day == 17) {
+        if (day == 1) {
             for (int i = 0; i < 7; i++) {
                 int event_hour = thursday_hours[i];
                 if (event_hour <= hour) {
