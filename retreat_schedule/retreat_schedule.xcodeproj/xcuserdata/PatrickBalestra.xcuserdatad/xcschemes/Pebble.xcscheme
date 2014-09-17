@@ -35,7 +35,7 @@
       selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
       launchStyle = "0"
       useCustomWorkingDirectory = "YES"
-      customWorkingDirectory = "/Users/PatrickBalestra/Downloads/retreat_schedule"
+      customWorkingDirectory = "/Users/PatrickBalestra/Documents/Github/PebbleRetreatSchedule/retreat_schedule"
       buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>DAD2A13E-598D-414E-9585-2CE9DCF1C0CA</string>
+	<key>IDESourceControlProjectName</key>
+	<string>retreat_schedule</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>CB6CE0E6F287F0C7030C17C7756E7999BA13E227</key>
+		<string>https://github.com/BalestraPatrick/PebbleRetreatSchedule.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>retreat_schedule/retreat_schedule.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>CB6CE0E6F287F0C7030C17C7756E7999BA13E227</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/BalestraPatrick/PebbleRetreatSchedule.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>CB6CE0E6F287F0C7030C17C7756E7999BA13E227</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>CB6CE0E6F287F0C7030C17C7756E7999BA13E227</string>
+			<key>IDESourceControlWCCName</key>
+			<string>PebbleRetreatSchedule</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -125,16 +125,20 @@ static void menu_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuI
     graphics_context_set_text_color(ctx, GColorBlack);
   
     if (cell_index->section == 0) {
-        graphics_draw_text(ctx, thursday_events[cell_index->row], fonts_get_system_font(FONT_KEY_GOTHIC_14), GRect(3, 0, 100, layer_get_frame(cell_layer).size.h), GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft, NULL);
+        float text_height = graphics_text_layout_get_content_size(thursday_events[cell_index->row], fonts_get_system_font(FONT_KEY_GOTHIC_14), GRect(3, 0, 100, 44), GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft).h;
+        graphics_draw_text(ctx, thursday_events[cell_index->row], fonts_get_system_font(FONT_KEY_GOTHIC_14), GRect(3, (44 / 2) - (text_height / 2) - 3, 100, text_height), GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft, NULL);
         graphics_draw_text(ctx, thursday_times[cell_index->row], fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD), GRect(100, 10, 41, 20), GTextOverflowModeTrailingEllipsis, GTextAlignmentRight, NULL);
     } else if (cell_index->section == 1) {
-        graphics_draw_text(ctx, friday_events[cell_index->row], fonts_get_system_font(FONT_KEY_GOTHIC_14), GRect(3, 0, 100, layer_get_frame(cell_layer).size.h), GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft, NULL);
+        float text_height = graphics_text_layout_get_content_size(friday_events[cell_index->row], fonts_get_system_font(FONT_KEY_GOTHIC_14), GRect(3, 0, 100, 44), GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft).h;
+        graphics_draw_text(ctx, friday_events[cell_index->row], fonts_get_system_font(FONT_KEY_GOTHIC_14), GRect(3, (44 / 2) - (text_height / 2) - 3, 100, text_height), GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft, NULL);
         graphics_draw_text(ctx, friday_times[cell_index->row], fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD), GRect(100, 10, 41, 20), GTextOverflowModeTrailingEllipsis, GTextAlignmentRight, NULL);
     } else if (cell_index->section == 2) {
-        graphics_draw_text(ctx, saturday_events[cell_index->row], fonts_get_system_font(FONT_KEY_GOTHIC_14), GRect(3, 0, 100, layer_get_frame(cell_layer).size.h), GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft, NULL);
+        float text_height = graphics_text_layout_get_content_size(saturday_events[cell_index->row], fonts_get_system_font(FONT_KEY_GOTHIC_14), GRect(3, 0, 100, 44), GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft).h;
+        graphics_draw_text(ctx, saturday_events[cell_index->row], fonts_get_system_font(FONT_KEY_GOTHIC_14), GRect(3, (44 / 2) - (text_height / 2) - 3, 100, text_height), GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft, NULL);
         graphics_draw_text(ctx, saturday_times[cell_index->row], fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD), GRect(100, 10, 41, 20), GTextOverflowModeTrailingEllipsis, GTextAlignmentRight, NULL);
     } else if (cell_index->section == 3) {
-        graphics_draw_text(ctx, sunday_events[cell_index->row], fonts_get_system_font(FONT_KEY_GOTHIC_14), GRect(3, 0, 100, layer_get_frame(cell_layer).size.h), GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft, NULL);
+        float text_height = graphics_text_layout_get_content_size(sunday_events[cell_index->row], fonts_get_system_font(FONT_KEY_GOTHIC_14), GRect(3, 0, 100, 44), GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft).h;
+        graphics_draw_text(ctx, sunday_events[cell_index->row], fonts_get_system_font(FONT_KEY_GOTHIC_14), GRect(3, (44 / 2) - (text_height / 2) - 3, 100, text_height), GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft, NULL);
         graphics_draw_text(ctx, sunday_times[cell_index->row], fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD), GRect(100, 10, 41, 20), GTextOverflowModeTrailingEllipsis, GTextAlignmentRight, NULL);
     }
 }
