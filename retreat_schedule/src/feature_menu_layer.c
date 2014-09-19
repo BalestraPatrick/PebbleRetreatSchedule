@@ -43,7 +43,7 @@ static void create_data () {
     friday_events[1] = "Let the hacking commence all afternoon!";
     friday_events[2] = "Optional battery workshop";
     friday_events[3] = "Lunch!";
-    friday_events[4] = "Optional individual code reviews and mystery workshop";
+    friday_events[4] = "Optional individual design feedback or code reviews, and a mystery workshop";
     friday_events[5] = "Private tours/exploration of the Computer History Museum (CHM) in Mountain View";
     friday_events[6] = "Dinner at the CHM next to the Babbage Engine!";
     friday_events[7] = "Leave CHM -> Mountain View to sleep or explore";
@@ -62,7 +62,7 @@ static void create_data () {
     saturday_events[1] = "Let the hacking commence all afternoon!";
     saturday_events[2] = "Optional robotics competition!";
     saturday_events[3] = "Lunch!";
-    saturday_events[4] = "Optional app demos/design reviews/code reviews";
+    saturday_events[4] = "Optional app demos and code reviews";
     saturday_events[5] = "Dinner!";
     saturday_events[6] = "Custom ice cream sandwich making bar provided by Cream!";
     saturday_events[7] = "Leave retreat and go sleep or explore";
