@@ -4,91 +4,115 @@
 static Window *window;
 static MenuLayer *menu_layer;
 
-static char *thursday_events[7];
-static char *thursday_times[7];
-static int thursday_hours[7] = {9, 10, 12, 13, 18, 19, 22};
+static char *thursday_events[12];
+static char *thursday_times[12];
+static int thursday_hours[12] = {9, 10, 11, 12, 13, 16, 18, 18, 19, 19, 20, 21};
 
-static char *friday_events[8];
-static char *friday_times[8];
-static int friday_hours[8] = {9, 10, 10, 12, 13, 18, 19, 22};
+static char *friday_events[14];
+static char *friday_times[14];
+static int friday_hours[14] = {9, 10, 11, 12, 14, 14, 15, 15, 15, 16, 17, 18, 19, 22};
 
-static char *saturday_events[8];
-static char *saturday_times[8];
-static int saturday_hours[8] = {9, 10, 10, 12, 13, 18, 20, 22};
+static char *saturday_events[9];
+static char *saturday_times[9];
+static int saturday_hours[9] = {9, 10, 10, 12, 14, 16, 18, 20, 22};
 
 static char *sunday_events[6];
 static char *sunday_times[6];
-static int sunday_hours[6] = {9, 10, 11, 12, 14, 15};
+static int sunday_hours[6] = {9, 11, 12, 14, 14, 15};
 
 static void create_data () {
     // Thursday
-    thursday_events[0] = "Registration/Breakfast/Swag";
-    thursday_events[1] = "Introduction and overview of talks";
-    thursday_events[2] = "Lunch!";
-    thursday_events[3] = "Advanced Techniques, Tools, and APIs";
-    thursday_events[4] = "First ever Pebble Meetup in SF with lightning talks and the community!";
-    thursday_events[5] = "Food trucks for dinner!";
-    thursday_events[6] = "Leave SF -> Mountain View to sleep or explore";
+    thursday_events[0] = "Start of the Retreat";
+    thursday_events[1] = "Opening Presentation";
+    thursday_events[2] = "Mingling";
+    thursday_events[3] = "Lunch";
+    thursday_events[4] = "Technical Presentations";
+    thursday_events[5] = "Leave via Caltrain for Meetup in SF";
+    thursday_events[6] = "Meeting and Mingling";
+    thursday_events[7] = "Introduction";
+    thursday_events[8] = "Technical talks";
+    thursday_events[9] = "Lightning talks";
+    thursday_events[10] = "Raffle 3 Pebble Steels";
+    thursday_events[11] = "Meetup Ends";
     
     thursday_times[0] = "9:30";
     thursday_times[1] = "10:30";
-    thursday_times[2] = "12:00";
-    thursday_times[3] = "13:00";
-    thursday_times[4] = "18:00";
-    thursday_times[5] = "19:00";
-    thursday_times[6] = "22:00";
+    thursday_times[2] = "11:30";
+    thursday_times[3] = "12:00";
+    thursday_times[4] = "13:00";
+    thursday_times[5] = "16:00";
+    thursday_times[6] = "18:00";
+    thursday_times[7] = "18:40";
+    thursday_times[8] = "19:00";
+    thursday_times[9] = "19:30";
+    thursday_times[10] = "20:30";
+    thursday_times[11] = "21:30";
 
     // Friday
-    friday_events[0] = "Welcome/Breakfast";
-    friday_events[1] = "Let the hacking commence all afternoon!";
-    friday_events[2] = "Optional battery workshop";
-    friday_events[3] = "Lunch!";
-    friday_events[4] = "Optional individual design feedback or code reviews, and a mystery workshop";
-    friday_events[5] = "Private tours/exploration of the Computer History Museum (CHM) in Mountain View";
-    friday_events[6] = "Dinner at the CHM next to the Babbage Engine!";
-    friday_events[7] = "Leave CHM -> Mountain View to sleep or explore";
+    friday_events[0] = "Start of Day 2";
+    friday_events[1] = "Battery Talk by Stuart Harrell";
+    friday_events[2] = "BLE Presentation by Martijn Thé";
+    friday_events[3] = "Lunch";
+    friday_events[4] = "Code Reviews in the Workshop Room";
+    friday_events[5] = "Workshop on CloudPebble";
+    friday_events[6] = "Guest Presentation by Strap";
+    friday_events[7] = "Guest Presentation on Overlay";
+    friday_events[8] = "Panintelligent demo w/ Pebble and Crepes";
+    friday_events[9] = "Workshop on Pebble TM";
+    friday_events[10] = "Travel to Computer History Museum";
+    friday_events[11] = "Self-Guided Tours of the CHM";
+    friday_events[12] = "Dinner at the CHM";
+    friday_events[13] = "Leave the CHM";
     
     friday_times[0] = "9:30";
-    friday_times[1] = "10:00";
-    friday_times[2] = "10:30";
+    friday_times[1] = "10:30";
+    friday_times[2] = "11:00";
     friday_times[3] = "12:00";
-    friday_times[4] = "13:00";
-    friday_times[5] = "18:00";
-    friday_times[6] = "19:00";
-    friday_times[7] = "22:00";
+    friday_times[4] = "14:00";
+    friday_times[5] = "14:30";
+    friday_times[6] = "15:00";
+    friday_times[7] = "15:30";
+    friday_times[8] = "15:30";
+    friday_times[9] = "16:00";
+    friday_times[10] = "17:30";
+    friday_times[11] = "18:00";
+    friday_times[12] = "19:00";
+    friday_times[13] = "22:00";
     
     // Saturday
-    saturday_events[0] = "Welcome/Breakfast";
-    saturday_events[1] = "Let the hacking commence all afternoon!";
-    saturday_events[2] = "Optional robotics competition!";
-    saturday_events[3] = "Lunch!";
-    saturday_events[4] = "Optional app demos and code reviews";
-    saturday_events[5] = "Dinner!";
-    saturday_events[6] = "Custom ice cream sandwich making bar provided by Cream!";
-    saturday_events[7] = "Leave retreat and go sleep or explore";
+    saturday_events[0] = "Start of Day 3";
+    saturday_events[1] = "Code Reviews in the Workshop Room";
+    saturday_events[2] = "Robot Competition Introduction";
+    saturday_events[3] = "Lunch";
+    saturday_events[4] = "Code Reviews in the Workshop Room";
+    saturday_events[5] = "Robot Competition Matches";
+    saturday_events[6] = "Dinner";
+    saturday_events[7] = "Ice Cream Sandwhich Bar by Cream";
+    saturday_events[8] = "End of Day 3";
     
     saturday_times[0] = "9:30";
     saturday_times[1] = "10:00";
     saturday_times[2] = "10:30";
     saturday_times[3] = "12:00";
-    saturday_times[4] = "13:00";
-    saturday_times[5] = "18:00";
-    saturday_times[6] = "20:00";
-    saturday_times[7] = "22:00";
+    saturday_times[4] = "14:00";
+    saturday_times[5] = "16:00";
+    saturday_times[6] = "18:00";
+    saturday_times[7] = "20:00";
+    saturday_times[8] = "22:00";
     
     // Sunday
-    sunday_events[0] = "Welcome/Small breakfast";
-    sunday_events[1] = "Last minute hacking!";
-    sunday_events[2] = "Brunch! Everyone loves brunch!";
-    sunday_events[3] = "Developer showcase";
-    sunday_events[4] = "Awards (TBD) and closing talk";
-    sunday_events[5] = "You're probably tired of us and want to leave!";
+    sunday_events[0] = "Start of Day 4";
+    sunday_events[1] = "Brunch";
+    sunday_events[2] = "Developer Showcase";
+    sunday_events[3] = "Awards Ceremony";
+    sunday_events[4] = "Final Words";
+    sunday_events[5] = "Official End of Retreat";
     
     sunday_times[0] = "9:30";
-    sunday_times[1] = "10:00";
-    sunday_times[2] = "11:00";
-    sunday_times[3] = "12:00";
-    sunday_times[4] = "14:00";
+    sunday_times[1] = "11:30";
+    sunday_times[2] = "12:30";
+    sunday_times[3] = "14:00";
+    sunday_times[4] = "14:30";
     sunday_times[5] = "15:30";
 
 }
@@ -101,11 +125,11 @@ static uint16_t menu_get_num_rows_callback(MenuLayer *menu_layer, uint16_t secti
     if (section_index == 0) {
         return 1;
     } else if (section_index == 1) {
-        return 7;
+        return 12;
     } else if (section_index == 2) {
-        return 8;
+        return 14;
     } else if (section_index == 3) {
-        return 8;
+        return 9;
     } else {
         return 6;
     }
@@ -197,31 +221,43 @@ void window_load(Window *window) {
         selected.section = day - 1;
 
         if (day == 2) {
-            for (int i = 0; i < 7; i++) {
+            for (int i = 0; i < 11; i++) {
                 int event_hour = thursday_hours[i];
-                if (event_hour <= hour) {
+                if (event_hour < hour) {
                     selected.row = i;
+                } else if (event_hour == hour) {
+                    selected.row = i;
+                    break;
                 }
             }
         } else if (day == 3) {
-            for (int i = 0; i < 8; i++) {
+            for (int i = 0; i < 13; i++) {
                 int event_hour = friday_hours[i];
-                if (event_hour <= hour) {
+                if (event_hour < hour) {
                     selected.row = i;
+                } else if (event_hour == hour) {
+                    selected.row = i;
+                    break;
                 }
             }
         } else if (day == 4) {
             for (int i = 0; i < 8; i++) {
                 int event_hour = saturday_hours[i];
-                if (event_hour <= hour) {
+                if (event_hour < hour) {
                     selected.row = i;
+                } else if (event_hour == hour) {
+                    selected.row = i;
+                    break;
                 }
             }
         } else if (day == 5) {
-            for (int i = 0; i < 6; i++) {
+            for (int i = 0; i < 5; i++) {
                 int event_hour = sunday_hours[i];
-                if (event_hour <= hour) {
+                if (event_hour < hour) {
                     selected.row = i;
+                } else if (event_hour == hour) {
+                    selected.row = i;
+                    break;
                 }
             }
         }
